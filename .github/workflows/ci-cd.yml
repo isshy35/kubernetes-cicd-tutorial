@@ -18,6 +18,9 @@ jobs:
           password: ${{ secrets.CR_PAT }}
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+      - name: Fix Docker permissions (if needed)
+        run: |
+          sudo chmod 666 /var/run/docker.sock
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
